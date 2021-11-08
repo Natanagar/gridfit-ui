@@ -1,0 +1,204 @@
+@import './assets/_variables';
+
+$themes: (
+blue: ($blue, $blue-light),
+turquoise: ($turquoise, $turquoise-light),
+yellow: ($yellow, $yellow-light),
+green: ($green, $green-light),
+red: ($red, $red-light)
+);
+;
+@mixin generateButtonTheme($root) {
+  @each $name, $colors in $themes {
+  $themeColorPrimary: nth($colors, 1);
+  $themeColorSecondary: nth($colors, 2);
+
+
+  &#{$root}--theme-#{$name} {
+     transition: box-shadow .1s;
+
+     color: $themeColorPrimary;
+
+     border: 1px solid $themeColorPrimary;
+
+     background-color: $themeColorPrimary;
+
+  &:hover{
+     border: 1px solid $themeColorSecondary;
+     background-color: $themeColorSecondary;
+     box-shadow: 0 0 0 2px $themeColorSecondary;
+   }
+  &.btn-link{
+     color : $themeColorSecondary;
+   }
+  }
+
+
+&#{$root}--link#{$root}--theme-#{$name} {
+   color: $themeColorSecondary;
+   border: none;
+   background-color: unset;
+
+&:hover {
+   color: $themeColorPrimary;
+ }
+}
+}
+}
+
+.gf-button {
+  $root: &;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: auto;
+
+  cursor: pointer;
+
+  border: 0;
+  background-color: $gray4;
+
+  @include font-size(16px);
+
+  @include generateButtonTheme($root);
+
+
+&--type {
+&-filled {
+   color: $white !important;
+ }
+
+
+&-unfilled {
+   background-color: transparent !important;
+
+.gf-button-link:hover {
+  text-decoration: underline;
+}
+}
+}
+
+&--link {
+   display: inline-block;
+
+   text-decoration: none;
+
+   background-color: unset;
+
+   font-weight: bold;
+ }
+
+
+&--type-filled,
+&--type-unfilled {
+&#{$root}--size {
+&-large {
+   @include font-size(18px);
+   height: 50px;
+ }
+
+&-regular {
+   @include font-size(16px);
+   height: 40px;
+ }
+
+&-small {
+   @include font-size(14px);
+   height: 30px;
+ }
+}
+}
+
+&--disabled {
+   cursor: default;
+   pointer-events: none;
+
+   color: $white3 !important;
+   background-color: $turquoise-lightest !important;
+
+&:hover {
+   border: none !important;
+   box-shadow: none !important;
+ }
+}
+
+&--hidden {
+   display: none !important;
+ }
+
+&-nav-link {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+
+   width: 100%;
+   height: inherit;
+
+   text-align: center;
+ }
+
+&-nav-link,
+&-nav-link:hover {
+   cursor: pointer;
+   text-decoration: none;
+
+   color: unset;
+
+   background-color: unset;
+ }
+
+&-label {
+   margin: 0 auto;
+ }
+
+&-img {
+   margin-left: 10px;
+ }
+
+&-label__link {
+   width: 100%;
+   height: inherit;
+   margin: 0;
+   padding: 0;
+ }
+
+}
+@mixin changeColors($color){
+&:hover{
+  background-color: $color;
+  border: 1px solid $color;
+  box-shadow: 0 0 0 2px $color;
+}
+}
+
+@mixin removeTextDecoration {
+&:hover{
+  text-decoration: none;
+}
+}
+
+button.btn-secondary {
+  @include changeColors($turquoise);
+&:hover{
+   border: 2px solid $turquoise;
+ }
+}
+button.btn-link{
+  $root: &;
+  @include removeTextDecoration();
+  @include generateButtonTheme($root);
+  color: #4B8BB2;
+&:hover{
+   display:inline-block;
+   text-align: center;
+   border: none;
+ }
+&:active{
+   display:inline-block;
+   text-align: center;
+   border: none;
+ }
+
+}

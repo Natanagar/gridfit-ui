@@ -20,6 +20,7 @@ export const Primary = Template.bind({});
 Primary.args = {
   primary: true,
   label: 'Button',
+  children : "Gridfit",
 };
 
 export const Secondary = Template.bind({});
@@ -31,10 +32,12 @@ export const Large = Template.bind({});
 Large.args = {
   size: 'large',
   label: 'Button',
+  children : "Gridfit",
 };
 
 export const Small = Template.bind({});
 Small.args = {
   size: 'small',
   label: 'Button',
+  children : "Gridfit",
 };
